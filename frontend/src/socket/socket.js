@@ -6,7 +6,8 @@ const SOCKET_URL =
 
 const socket = io(SOCKET_URL, {
   autoConnect: true,
-  transports: ["polling", "websocket"],
+  transports: ["websocket"],
+  withCredentials: true,
 });
 
 socket.on("connect", () => {
@@ -14,10 +15,7 @@ socket.on("connect", () => {
 });
 
 socket.on("connect_error", (error) => {
-  console.error(
-    "❌ Socket connection error:",
-    error.message
-  );
+  console.error("❌ Socket connection error:", error.message);
 });
 
 socket.on("disconnect", (reason) => {
